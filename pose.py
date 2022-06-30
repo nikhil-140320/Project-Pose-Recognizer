@@ -71,7 +71,7 @@ def classifyPose(landmarks, output_image, display=False):
             if left_knee_angle > 160 and left_knee_angle < 195 and right_knee_angle > 160 and right_knee_angle < 195:
                 label = 'Muscle Pose'
     if label != 'Undefined Pose':
-        color = (0, 255, 0)
+        color = (255, 100, 0)
     cv2.putText(output_image, label, (30, 60), cv2.FONT_HERSHEY_PLAIN, 4, color, 4)
     if display:
         plt.figure(figsize=[10, 10])
@@ -96,7 +96,8 @@ while camera_video.isOpened():
         frame, _ = classifyPose(landmarks, frame, display=False)
     cv2.imshow('Pose Detection and Classification', frame)
     k = cv2.waitKey(1) & 0xFF
-    if k == 27:
+    if k == 27:    #ascii code of esc is 27 thats why i used this
+    #if k == ord('q')      #if i want to use q instead of esc to close the window but i like to press esc
         break
 camera_video.release()
 cv2.destroyAllWindows()
